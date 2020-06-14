@@ -58,6 +58,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define I2C1_Address 0x15
+#define I2C2_Address 0x16
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

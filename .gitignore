@@ -1,0 +1,8 @@
+# stm32CubeMX
+Code/stm32_I2C_master_slave_Send_Receive/.settings/language.settings.xml
+Code/stm32_I2C_master_slave_Send_Receive/stm32_I2C_master_slave_Send_Receive Debug.launch
+Code/stm32_I2C_master_slave_Send_Receive/Debug/*
+!Code/stm32_I2C_master_slave_Send_Receive/Debug/*.elf
+!Code/stm32_I2C_master_slave_Send_Receive/Debug/*.bin
+!Code/stm32_I2C_master_slave_Send_Receive/Debug/*.hex
+

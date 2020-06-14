@@ -47,7 +47,10 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+uint8_t I2C1_TX_Buff[200];
+uint8_t I2C1_RX_Buff[200];
+uint8_t I2C2_TX_Buff[200];
+uint8_t I2C2_RX_Buff[200];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -94,7 +97,8 @@ int main(void)
   MX_I2C1_Init();
   MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
-
+  for(uint8_t i = 0; i < 200; i++)
+	  I2C1_TX_Buff[i] = i;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -104,6 +108,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  HAL_I2C_Master_Transmit(&hi2c1, I2C2_Address, I2C1_TX_Buff, 5, 100);
+	  HAL_I2C_Slave_Receive(&hi2c2, I2C2_RX_Buff, 5, 100);
   }
   /* USER CODE END 3 */
 }
