@@ -60,6 +60,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define I2C1_Address 0x15
 #define I2C2_Address 0x16
+#define LED_Pin GPIO_PIN_13
+#define LED_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+ * All rights reserved.</center></h2>
+ *
+ * This software component is licensed by ST under BSD 3-Clause license,
+ * the "License"; You may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at:
+ *                        opensource.org/licenses/BSD-3-Clause
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
@@ -23,6 +23,7 @@
 #include "crc.h"
 #include "dma.h"
 #include "i2c.h"
+#include "tim.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -96,9 +97,10 @@ int main(void)
   MX_CRC_Init();
   MX_I2C1_Init();
   MX_I2C2_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-  for(uint8_t i = 0; i < 200; i++)
-	  I2C1_TX_Buff[i] = i;
+  for (uint8_t i = 0; i < 200; i++)
+	I2C1_TX_Buff[i] = i;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -108,8 +110,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  HAL_I2C_Master_Transmit(&hi2c1, I2C2_Address, I2C1_TX_Buff, 5, 100);
-	  HAL_I2C_Slave_Receive(&hi2c2, I2C2_RX_Buff, 5, 100);
+	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+	HAL_I2C_Master_Transmit(&hi2c1, I2C2_Address, I2C1_TX_Buff, 5, 100);
+	HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+	HAL_I2C_Slave_Receive(&hi2c2, I2C2_RX_Buff, 5, 100);
   }
   /* USER CODE END 3 */
 }
